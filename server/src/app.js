@@ -2,18 +2,21 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
-
+const { sequelize } = require('./models')
+const config = require('./config/config')
 const app = express();
 app.use(morgan("combined"));
 app.use(bodyParser.json());
 app.use(cors()); //use this if u want to run your server on a different domain
 
-app.post("/register", (req, res) => {
-  res.send({
-    message: `Hello ${req.body.email} Your user was registered! Have fun!`
-  });
+require('./routes')(app)
+
+sequelize.sync().then(() => {
+  app.listen(config.port || 8081, () =>
+    console.log(`Server started on PORT ${config.port || 8081}...`)
+  );
 });
 
-app.listen(process.env.PORT || 8081, () =>
-  console.log(`Listening to PORT ${process.env.PORT || 8081}...`)
-);
+
+
+
