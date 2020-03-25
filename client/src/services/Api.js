@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios' // connecting to API via axios
 
 export default () => {
   return axios.create({
