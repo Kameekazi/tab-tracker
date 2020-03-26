@@ -5,7 +5,7 @@
         <v-col cols="12" sm="8" md="4">
           <v-card class="elevation-12">
             <v-toolbar color="primary" dark flat>
-              <v-toolbar-title>Registration form</v-toolbar-title>
+              <v-toolbar-title>Login Form</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
               <v-form>
@@ -31,7 +31,7 @@
               <br />
               <v-input :error-messages="error" error disabled></v-input>
               <v-spacer />
-              <v-btn @click="register" color="primary">Register</v-btn>
+              <v-btn @click="register" color="primary">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
