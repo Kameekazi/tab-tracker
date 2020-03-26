@@ -1,45 +1,44 @@
 <template>
-  <v-app>
-    <v-content>
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="4">
-            <v-card class="elevation-12">
-              <v-toolbar color="primary" dark flat>
-                <v-toolbar-title>Registration form</v-toolbar-title>
-              </v-toolbar>
-              <v-card-text>
-                <v-form>
-                  <v-text-field
-                    v-model="email"
-                    label="E-mail"
-                    name="email"
-                    type="email"
-                    :rules="emailrules"
-                  />
+  <v-content>
+    <v-container class="fill-height" fluid>
+      <v-row align="center" justify="center" no-gutters style="margin-top:-10px">
+        <v-col cols="12" sm="8" md="4">
+          <v-card class="elevation-12">
+            <v-toolbar color="primary" dark flat>
+              <v-toolbar-title>Registration form</v-toolbar-title>
+            </v-toolbar>
+            <v-card-text>
+              <v-form>
+                <v-text-field
+                  v-model="email"
+                  label="E-mail"
+                  name="email"
+                  type="email"
+                  :rules="emailrules"
+                />
 
-                  <v-text-field
-                    v-model="password"
-                    id="password"
-                    label="Password"
-                    name="password"
-                    type="password"
-                    :rules="passRules"
-                  />
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <br />
-                <v-input :error-messages="error" error disabled></v-input>
-                <v-spacer />
-                <v-btn @click="register" color="primary">Register</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
-  </v-app>
+                <v-text-field
+                  v-model="password"
+                  id="password"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  :rules="passRules"
+                />
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <br />
+              <v-input :error-messages="error" error disabled></v-input>
+              <v-spacer />
+              <v-btn @click="register" color="primary">Register</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-content>
+
   <!-- <v-layout column>
     <v-flex xs6 offset-xs3>
       <div class="white elevation-2">
