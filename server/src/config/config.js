@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = {  //Database configurations
     port: process.env.PORT || 8081,
     db: {
         database: process.env.DB_NAME || 'tabtracker',

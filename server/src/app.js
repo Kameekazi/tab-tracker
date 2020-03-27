@@ -11,7 +11,7 @@ app.use(cors()); //use this if u want to run your server on a different domain
 
 require('./routes')(app)
 
-sequelize.sync().then(() => {
+sequelize.sync().then(() => {       //for dropping all tables in the database [ sequelize.sync({force: true}) ]  note: testing purpose only
   app.listen(config.port || 8081, () =>
     console.log(`Server started on PORT ${config.port || 8081}...`)
   );

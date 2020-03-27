@@ -14,7 +14,7 @@ const sequelize = new Sequelize(  //initializing
 )
 
 fs
-    .readdirSync(__dirname)//getting all files in models dir
+    .readdirSync(__dirname)//getting all files from the model directory
     .filter((file) =>
         file !== 'index.js')
     .forEach((file) => {
