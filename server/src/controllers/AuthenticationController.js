@@ -28,10 +28,10 @@ module.exports = {
 
             const isPasswordValid = password === user.password
             if (!isPasswordValid) {
-                res.status(403).send({ error: `The login information was incorrect` })
+                return res.status(403).send({ error: `The login information was incorrect` })
             }
             const userJson = user.toJSON()
-            res.send(userJson)
+            res.send({ user: userJson })
         } catch (err) {
             res.status(500).send({
                 error: 'An error has occured  trying to log in '
