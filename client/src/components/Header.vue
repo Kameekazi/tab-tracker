@@ -7,8 +7,20 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn color="primary" depressed dark>Browse</v-btn>
-        <v-btn color="primary" depressed dark @click="navigateTo({name: 'login'})">LOG IN</v-btn>
-        <v-btn color="primary" depressed dark @click="navigateTo({name: 'register'})">SIGN UP</v-btn>
+        <v-btn
+          v-if="!$store.state.isUserLoggedIn"
+          color="primary"
+          depressed
+          dark
+          @click="navigateTo({name: 'login'})"
+        >LOG IN</v-btn>
+        <v-btn
+          v-if="!$store.state.isUserLoggedIn"
+          color="primary"
+          depressed
+          dark
+          @click="navigateTo({name: 'register'})"
+        >SIGN UP</v-btn>
       </v-toolbar-items>
     </v-toolbar>
   </v-card>

@@ -4,14 +4,18 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import vuetify from '@/plugins/vuetify'
+import { sync } from 'vuex-router-sync'
+import store from '@/store/store'
 
 Vue.config.productionTip = false
 
+sync(store, router)
 /* eslint-disable no-new */
 new Vue({
   vuetify,
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 }).$mount('#app')

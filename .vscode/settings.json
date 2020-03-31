@@ -3,5 +3,5 @@
     "scss.completion.completePropertyWithSemicolon": false,
     "vetur.format.defaultFormatter.js": "vscode-typescript",
     "editor.insertSpaces": false,
-    "javascript.format.insertSpaceBeforeFunctionParenthesis": true
+	"javascript.format.insertSpaceBeforeFunctionParenthesis": true
 }
