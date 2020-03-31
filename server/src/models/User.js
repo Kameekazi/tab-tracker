@@ -1,9 +1,41 @@
+const Promise = require('bluebird')
+const bcrypt = Promise.promisifyAll(require('bcrypt'))
+
+function hashPassword (user) {
+    const saltRounds = 8;
+
+    if (!user.changed('password')) {   //TO DO: find out unsa ning changed method
+        return;
+    }
+
+    return bcrypt.hash(user.password, saltRounds).then((hash) => {
+        console.log('hash sa function', hash)
+        user.setDataValue('password', hash)
+    })
+}
+
+function befSave () {
+    console.log('befSave')
+}
+
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('User', {
+    const User = sequelize.define('User', {
         email: {
             type: DataTypes.STRING,
             unique: true            //only 1 instance should be registered else return error
         },
         password: DataTypes.STRING
-    });
-};
+    }, {
+        hooks: {
+            beforeCreate: hashPassword,
+            beforeUpdate: hashPassword,
+            beforeSave: befSave
+        }
+    })
+
+    User.prototype.comparePassword = (password, hashpw) => {
+        return bcrypt.compareSync(password, hashpw)
+    }
+
+    return User
+}
