@@ -1,12 +1,9 @@
 <template>
-  <v-content>
-    <v-container fluid>
-      <v-row align="center" justify="center" no-gutters style="margin-top:50px">
-        <v-col cols="12" sm="8" md="4">
-          <v-card class="elevation-12">
-            <v-toolbar color="primary" dark flat>
-              <v-toolbar-title>Registration form</v-toolbar-title>
-            </v-toolbar>
+  <v-container fluid>
+    <v-row align="center" justify="center">
+      <v-col cols="12" sm="8" md="4">
+        <panel title="Register">
+          <slot>
             <v-card-text>
               <v-form>
                 <v-text-field
@@ -29,25 +26,27 @@
             </v-card-text>
             <v-card-actions>
               <br />
-              <v-input :error-messages="error" error disabled></v-input>
+              <v-input :error-messages="error" error></v-input>
               <v-spacer />
               <v-btn @click="register" color="primary">Register</v-btn>
             </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-content>
+          </slot>
+        </panel>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-
+import Panel from '@/components/Panel'
 export default {
   data () {
     return {
-      email: '',
-      password: '',
+      credentials: {
+        email: '',
+        password: ''
+      },
       error: '',
       emailrules: [
         value => !!value || 'Required.',
@@ -66,6 +65,17 @@ export default {
   },
   methods: {
     async register () {
+      this.error = null
+
+      const areAllFieldsFilledIn = Object
+        .keys(this.credentials)
+        .every(key => !!this.credentials[key])
+      console.log(areAllFieldsFilledIn)
+      if (!areAllFieldsFilledIn) {
+        this.error = '*Please Fill in all the required fields.'
+        return
+      }
+
       try {
         const response = await AuthenticationService.register({
           email: this.email,
@@ -77,6 +87,9 @@ export default {
         this.error = error.response.data.error
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>

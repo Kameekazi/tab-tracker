@@ -14,10 +14,6 @@ function hashPassword (user) {
     })
 }
 
-function befSave () {
-    console.log('befSave')
-}
-
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
         email: {
@@ -29,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         hooks: {
             beforeCreate: hashPassword,
             beforeUpdate: hashPassword,
-            beforeSave: befSave
+            beforeSave: hashPassword
         }
     })
 
