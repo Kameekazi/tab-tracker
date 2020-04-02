@@ -1,5 +1,5 @@
 <template>
-  <panel title></panel>
+  <panel title="Searched"></panel>
 </template>
 
 <script>

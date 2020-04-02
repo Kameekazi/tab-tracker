@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import pageHeader from '@/components/Header.vue'
+import pageHeader from '@/components/Header'
 export default {
   name: 'App',
   components: {
@@ -20,7 +20,8 @@ export default {
 
 <style>
 html {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
+  /* overflow: hidden; */
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

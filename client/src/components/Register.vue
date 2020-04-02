@@ -7,7 +7,7 @@
             <v-card-text>
               <v-form>
                 <v-text-field
-                  v-model="email"
+                  v-model="credentials.email"
                   label="Email"
                   name="email"
                   type="email"
@@ -15,7 +15,7 @@
                 />
 
                 <v-text-field
-                  v-model="password"
+                  v-model="credentials.password"
                   id="password"
                   label="Password"
                   name="password"
@@ -39,7 +39,6 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -50,7 +49,6 @@ export default {
       error: '',
       emailrules: [
         value => !!value || 'Required.',
-        value => (value || '').length <= 20 || 'Max 20 characters',
         value => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           return pattern.test(value) || 'Invalid e-mail.'
@@ -66,30 +64,26 @@ export default {
   methods: {
     async register () {
       this.error = null
+      const areAllFieldsFilledIn = Object.keys(this.credentials).every(key => !!this.credentials[key])
 
-      const areAllFieldsFilledIn = Object
-        .keys(this.credentials)
-        .every(key => !!this.credentials[key])
-      console.log(areAllFieldsFilledIn)
       if (!areAllFieldsFilledIn) {
-        this.error = '*Please Fill in all the required fields.'
+        this.error = '*Please fill all the required fields.'
         return
       }
-
       try {
         const response = await AuthenticationService.register({
-          email: this.email,
-          password: this.password
+          email: this.credentials.email,
+          password: this.credentials.password
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'root'
+        })
       } catch (error) {
         this.error = error.response.data.error
       }
     }
-  },
-  components: {
-    Panel
   }
 }
 </script>

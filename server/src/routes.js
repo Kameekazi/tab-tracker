@@ -10,14 +10,17 @@ module.exports = (app) => {
         AuthenticationController.register)
 
     app.post('/login',
-        // AuthenticationControllerPolicy.register,
         AuthenticationController.login)
 
+    app.get('/songs',
+        SongsController.index)
+
     app.post('/songs',
-        // AuthenticationControllerPolicy.register,
         SongsController.post)
 
-    app.get('/songs',
-        // AuthenticationControllerPolicy.register,
-        SongsController.index)
+    app.get('/songs/:songId',
+        SongsController.show)
+
+    app.put('/songs/:songId',
+        SongsController.put)
 };

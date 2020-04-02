@@ -1,5 +1,5 @@
 <template>
-  <v-card color="grey lighten-4" flat tile>
+  <v-app-bar fixed color="grey lighten-4" flat tile>
     <v-toolbar color="primary" fixed dense dark>
       <v-toolbar-title class="mr-4">
         <span class="home" @click="navigateTo({name: 'root'})">TabTracker</span>
@@ -32,7 +32,7 @@
         >Log Out</v-btn>
       </v-toolbar-items>
     </v-toolbar>
-  </v-card>
+  </v-app-bar>
 </template>
 
 <script>

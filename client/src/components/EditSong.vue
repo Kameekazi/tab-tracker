@@ -5,16 +5,20 @@
         <panel title="Song Metadata">
           <div>
             <v-card-text>
-              <v-text-field v-model="song.title" label="Title" :rules="isRequired"></v-text-field>
-              <v-text-field v-model="song.artist" label="Artist" :rules="isRequired"></v-text-field>
-              <v-text-field v-model="song.genre" label="Genre" :rules="isRequired"></v-text-field>
-              <v-text-field v-model="song.album" label="Album" :rules="isRequired"></v-text-field>
+              <v-text-field v-model="song.title" label="Title" :rules="isRequired">{{song.title}}</v-text-field>
+              <v-text-field v-model="song.artist" label="Artist" :rules="isRequired">{{song.title}}</v-text-field>
+              <v-text-field v-model="song.genre" label="Genre" :rules="isRequired">{{song.title}}</v-text-field>
+              <v-text-field v-model="song.album" label="Album" :rules="isRequired">{{song.title}}</v-text-field>
               <v-text-field
                 v-model="song.albumImageUrl"
                 label="Album Image Url"
                 :rules="isRequired"
               ></v-text-field>
-              <v-text-field v-model="song.youtubeId" label="YouTube ID" :rules="isRequired"></v-text-field>
+              <v-text-field
+                v-model="song.youtubeId"
+                label="YouTube ID"
+                :rules="isRequired"
+              >{{song.title}}</v-text-field>
             </v-card-text>
           </div>
         </panel>
@@ -31,14 +35,14 @@
                   v-model="song.tab"
                   label="Tab"
                   :rules="isRequired"
-                ></v-textarea>
+                >{{song.title}}</v-textarea>
                 <v-textarea
                   clearable
                   clear-icon="cancel"
                   v-model="song.lyrics"
                   label="Lyrics"
                   :rules="isRequired"
-                ></v-textarea>
+                >{{song.title}}</v-textarea>
               </v-container>
             </v-card-text>
           </div>
@@ -49,7 +53,7 @@
             enabled
             style="margin-top:-30px;"
           ></v-input>
-          <v-btn class="mb-2" style="margin-top:-8px;" @click="create" color="primary">Create</v-btn>
+          <v-btn class="mb-2" style="margin-top:-8px;" @click="edit" color="primary">Save</v-btn>
         </panel>
       </v-flex>
     </v-layout>
@@ -57,7 +61,7 @@
 </template>
 
 <script>
-import SongService from '@/services/SongsService'
+import SongsService from '@/services/SongsService'
 export default {
   data () {
     return {
@@ -72,31 +76,41 @@ export default {
         lyrics: null
       },
       error: null,
+      songId: null,
       isRequired: [value => !!value || 'Required.']
     }
   },
   methods: {
-    async create () {
-      this.error = null
-      const areAllFieldsFilledIn = Object
-        .keys(this.song)
-        .every(key => !!this.song[key])
-      console.log(areAllFieldsFilledIn)
-      if (!areAllFieldsFilledIn) {
-        this.error = '*Please Fill in all the required fields.'
-        return
-      }
+    async edit () {
+      //   this.error = null
+      //   const areAllFieldsFilledIn = Object
+      //     .keys(this.song)
+      //     .every(key => !!this.song[key])
+      //   console.log(areAllFieldsFilledIn)
+      //   if (!areAllFieldsFilledIn) {
+      //     this.error = '*Please Fill in all the required fields.'
+      //     return
+      //   }
 
       try {
-        await SongService.post(this.song)
+        // const songId = this.$store.state.route.params.songId
+        console.log('mao siong', this.song)
+        await SongsService.put(this.song)
         this.$router.push({
-          name: 'songs'
+          name: 'song',
+          params: {
+            songId: this.songId
+          }
         })
       } catch (error) {
         // this.error(error.response.data.error)
         console.log(error)
       }
     }
+  },
+  async mounted () {
+    this.songId = this.$store.state.route.params.songId
+    this.song = (await SongsService.show(this.songId)).data
   }
 }
 </script>

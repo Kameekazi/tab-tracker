@@ -6,11 +6,17 @@ import router from './router'
 import vuetify from '@/plugins/vuetify'
 import { sync } from 'vuex-router-sync'
 import store from '@/store/store'
+import VueYouTubeEmbed from 'vue-youtube-embed'
+import Panel from '@/components/globals/Panel'
 
 Vue.config.productionTip = false
+Vue.use(VueYouTubeEmbed)
 
 sync(store, router)
 /* eslint-disable no-new */
+
+Vue.component('panel', Panel)
+
 new Vue({
   vuetify,
   el: '#app',
