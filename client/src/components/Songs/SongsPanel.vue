@@ -59,6 +59,14 @@ export default {
       this.$router.push(route)
       window.scrollTo(0, 0)
     }
+  },
+  watch: {
+    '$route.query.search': {
+      immediate: true, // same as using mounted
+      async handler (value) {
+        this.songs = (await SongsService.index(value)).data
+      }
+    }
   }
 }
 </script>
