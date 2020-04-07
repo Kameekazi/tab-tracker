@@ -1,7 +1,14 @@
 <template>
   <panel title="Music Video">
     <slot>
-      <youtube :video-id="youtubeId" player-width="500" player-height="280"></youtube>
+      <v-container>
+        <youtube
+          :video-id="youtubeId"
+          player-width="500"
+          player-height="257"
+          host="https://www.youtube.com"
+        ></youtube>
+      </v-container>
     </slot>
   </panel>
 </template>

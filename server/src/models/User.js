@@ -4,7 +4,7 @@ const bcrypt = Promise.promisifyAll(require('bcrypt'))
 function hashPassword (user) {
     const saltRounds = 8;
 
-    if (!user.changed('password')) {   //TO DO: find out unsa ning changed method
+    if (!user.changed('password')) {
         return;
     }
 

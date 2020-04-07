@@ -1,6 +1,15 @@
 <template>
   <panel title="Song Metadata">
-    <router-link slot="action" :to="{name:'song-edit'}">
+    <router-link
+      slot="action"
+      :to="{name:'song-edit',
+      params(){
+        return {
+          songId: song.id
+          }
+          }
+      }"
+    >
       <v-btn icon v-if="$store.state.isUserLoggedIn">
         <v-icon>edit</v-icon>
       </v-btn>

@@ -6,6 +6,9 @@ export default {
   },
   login (credentials) {
     return Api().post('login', credentials)
+  },
+  gauth (authCode) {
+    return Api().post('auth/google', authCode)
   }
 }
 

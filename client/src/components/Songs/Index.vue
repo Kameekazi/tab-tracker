@@ -11,29 +11,12 @@
 
 <script>
 import SongsPanel from './SongsPanel'
-import SongsService from '@/services/SongsService'
 import SongSearchPanel from './SongsSearchPanel'
 export default {
   components: {
     SongsPanel,
     SongSearchPanel
   }
-  // },
-  // data () {
-  //   return {
-  //     songs: null
-  //   }
-  // },
-  // async mounted () {
-  //   // do a request to the backend for all the songs
-  //   this.songs = (await SongsService.index()).data
-  // },
-  // methods: {
-  //   navigateTo (route) {
-  //     this.$router.push(route)
-  //     window.scrollTo(0, 0)
-  //   }
-  // }
 }
 </script>
 

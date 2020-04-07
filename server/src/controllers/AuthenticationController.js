@@ -1,3 +1,4 @@
+//go to routes before here to set up route
 //Used for declaring endpoints
 const { User } = require('../models')
 const jwt = require('jsonwebtoken')

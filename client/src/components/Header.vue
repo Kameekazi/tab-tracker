@@ -2,10 +2,10 @@
   <v-app-bar fixed color="grey lighten-4" flat tile>
     <v-toolbar color="primary" fixed dense dark>
       <v-toolbar-title class="mr-4">
-        <span class="home" @click="navigateTo({name: 'root'})">TabTracker</span>
+        <router-link tag="span" class="home" :to="{name: 'root'}">TabTracker</router-link>
       </v-toolbar-title>
       <v-toolbar-items>
-        <v-btn color="primary" depressed dark @click="navigateTo({name: 'songs'})">Browse</v-btn>
+        <v-btn color="primary" depressed dark :to="{name: 'songs'}">Browse</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <v-toolbar-items>
@@ -14,14 +14,14 @@
           color="primary"
           depressed
           dark
-          @click="navigateTo({name: 'login'})"
+          :to="{name: 'login'}"
         >Log In</v-btn>
         <v-btn
           v-if="!$store.state.isUserLoggedIn"
           color="primary"
           depressed
           dark
-          @click="navigateTo({name: 'register'})"
+          :to="{name: 'register'}"
         >Sign Up</v-btn>
         <v-btn
           v-if="$store.state.isUserLoggedIn"
@@ -38,15 +38,18 @@
 <script>
 export default {
   methods: {
-    navigateTo (route) {
-      this.$router.push(route)
-    },
     logout () {
-      this.$store.dispatch('setToken', null)
-      this.$store.dispatch('setUser', null)
-      this.$router.push({
-        name: 'root'
-      })
+      this.$gAuth.signOut()
+        .then(() => {
+          this.$store.dispatch('setToken', null)
+          this.$store.dispatch('setUser', null)
+          this.$router.push({
+            name: 'root'
+          })
+        })
+        .catch(error => {
+          this.error = error
+        })
     }
   }
 }
