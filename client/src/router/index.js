@@ -6,7 +6,7 @@ import Songs from '@/components/Songs/Index'
 import CreateSong from '@/components/createSong'
 import ViewSong from '@/components/ViewSong/Index'
 import EditSong from '@/components/EditSong'
-import authGoogle from '@/components/Googlecallback'
+
 Vue.use(Router)
 
 export default new Router({
@@ -24,11 +24,6 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
-    },
-    {
-      path: '/auth/google',
-      name: 'google-auth',
-      component: authGoogle
     },
     {
       path: '/songs',
