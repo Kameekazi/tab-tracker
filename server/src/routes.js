@@ -21,6 +21,6 @@ module.exports = (app) => {
     app.put('/songs/:songId',
         SongsController.put)
 
-    app.get('/bookmarks',
-        BookmarksController.index)
+    // app.get('/bookmarks',
+    //     BookmarksController.index)
 };
