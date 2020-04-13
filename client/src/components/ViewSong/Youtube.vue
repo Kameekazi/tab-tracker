@@ -1,8 +1,8 @@
 <template>
   <panel title="Music Video">
     <slot>
-      <v-container>
-        <youtube :video-id="youtubeId" player-width="500" player-height="257"></youtube>
+      <v-container x6>
+        <youtube :video-id="youtubeId" player-width="500" player-height="323"></youtube>
       </v-container>
     </slot>
   </panel>
