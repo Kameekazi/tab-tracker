@@ -4,8 +4,6 @@ const Sequelize = require('sequelize')
 const config = require('../config/config.js')
 const db = {}
 
-console.log(`mao ning database ${config.db.database}`)
-
 const sequelize = new Sequelize(  //initializing
     config.db.database,
     config.db.user,
@@ -22,8 +20,15 @@ fs
         db[model.name] = model
     })
 
+Object.keys(db).forEach(function (modelName) {
+    if ('associate' in db[modelName]) {
+        //         console.log('sud sa if', db[modelName].associate(db))
+        console.log('mao ning db', db)
+        db[modelName].associate(db)     // meaning??
+    }
+})
+
 db.sequelize = sequelize //access to sequelize object
 db.Sequelize = Sequelize //access to Sequelize object
-
 
 module.exports = db

@@ -82,19 +82,19 @@ export default {
   },
   methods: {
     async edit () {
-      //   this.error = null
-      //   const areAllFieldsFilledIn = Object
-      //     .keys(this.song)
-      //     .every(key => !!this.song[key])
-      //   console.log(areAllFieldsFilledIn)
-      //   if (!areAllFieldsFilledIn) {
-      //     this.error = '*Please Fill in all the required fields.'
-      //     return
-      //   }
+      this.error = null
+      const areAllFieldsFilledIn = Object
+        .keys(this.song)
+        .every(key => !!this.song[key])
+      console.log(areAllFieldsFilledIn)
+      if (!areAllFieldsFilledIn) {
+        this.error = '*Please Fill in all the required fields.'
+        return
+      }
 
       try {
         // const songId = this.$store.state.route.params.songId
-        console.log('mao siong', this.song)
+        console.log('mao ning song', this.song)
         await SongsService.put(this.song)
         this.$router.push({
           name: 'song',

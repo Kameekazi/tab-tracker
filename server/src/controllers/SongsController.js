@@ -8,7 +8,6 @@ module.exports = {
 		try {
 			let songs = null
 			const search = req.query.search
-			console.log('this is search', search)
 			if (search) {
 				songs = await Song.findAll({
 					where: {

@@ -118,7 +118,7 @@ export default {
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
         this.$router.push({
-          name: 'root'
+          name: 'songs'
         })
       } catch (error) {
         this.error = error.response.data.error
@@ -144,7 +144,7 @@ export default {
           this.isSignIn = this.$gAuth.isAuthorized
 
           this.$router.push({
-            name: 'root'
+            name: 'songs'
           })
         })
         .catch(error => {

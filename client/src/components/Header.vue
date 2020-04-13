@@ -2,7 +2,7 @@
   <v-app-bar fixed color="grey lighten-4" flat tile>
     <v-toolbar color="primary" fixed dense dark>
       <v-toolbar-title class="mr-4">
-        <router-link tag="span" class="home" :to="{name: 'root'}">TabTracker</router-link>
+        <router-link tag="span" class="home" :to="{name: 'songs'}">TabTracker</router-link>
       </v-toolbar-title>
       <v-toolbar-items>
         <v-btn color="primary" depressed dark :to="{name: 'songs'}">Browse</v-btn>
@@ -44,7 +44,7 @@ export default {
           this.$store.dispatch('setToken', null)
           this.$store.dispatch('setUser', null)
           this.$router.push({
-            name: 'root'
+            name: 'songs'
           })
         })
         .catch(error => {

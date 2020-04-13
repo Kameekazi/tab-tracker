@@ -9,7 +9,6 @@ function hashPassword (user) {
     }
 
     return bcrypt.hash(user.password, saltRounds).then((hash) => {
-        console.log('hash sa function', hash)
         user.setDataValue('password', hash)
     })
 }

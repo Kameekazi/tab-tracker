@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+// import * as Cookies from 'js-cookie'
 
 Vue.use(Vuex)
 /* eslint-disable no-new */
 export default new Vuex.Store({
   strict: true,
+  plugins: [
+    createPersistedState()
+  ],
   state: {
     token: null,
     user: null,

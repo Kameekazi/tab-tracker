@@ -2,12 +2,7 @@
   <panel title="Music Video">
     <slot>
       <v-container>
-        <youtube
-          :video-id="youtubeId"
-          player-width="500"
-          player-height="257"
-          host="https://www.youtube.com"
-        ></youtube>
+        <youtube :video-id="youtubeId" player-width="500" player-height="257"></youtube>
       </v-container>
     </slot>
   </panel>

@@ -9,11 +9,17 @@
           }
           }
       }"
+      style="text-decoration: none"
     >
       <v-btn icon v-if="$store.state.isUserLoggedIn">
         <v-icon>edit</v-icon>
       </v-btn>
     </router-link>
+    <v-btn-toggle slot="action" primary style="background-color: none">
+      <v-btn primary>
+        <v-icon>star</v-icon>
+      </v-btn>
+    </v-btn-toggle>
     <slot>
       <v-layout>
         <v-flex xs6>

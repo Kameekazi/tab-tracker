@@ -1,7 +1,7 @@
 <template>
   <panel title="Songs">
     <!-- <v-btn @click="createSong" icon> -->
-    <router-link slot="action" :to="{name:'songs-create'}">
+    <router-link slot="action" :to="{name:'songs-create'}" style="text-decoration: none">
       <v-btn icon v-if="$store.state.isUserLoggedIn">
         <v-icon>add</v-icon>
       </v-btn>
